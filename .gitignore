@@ -1,0 +1,17 @@
+# Java / Maven
+backend/target/
+*.class
+.idea/
+*.iml
+
+# Angular / Node
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+
+# Secrets and OS files
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db

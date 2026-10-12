@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: datapilot-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: datapilot
+      POSTGRES_USER: datapilot
+      POSTGRES_PASSWORD: datapilot_dev
+    ports:
+      - "5432:5432"
+    volumes:
+      - datapilot_pgdata:/var/lib/postgresql/data
+      - ./database/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U datapilot -d datapilot"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+volumes:
+  datapilot_pgdata:
